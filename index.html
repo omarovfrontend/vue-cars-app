@@ -20,16 +20,22 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="search">Find your car</label>
-                    <input type="text" class="form-control" id="search" placeholder="name, model ...">
+                    <input type="text" 
+                        class="form-control" 
+                        id="search" 
+                        placeholder="name, model ..."
+                        v-model="search"
+                    >
+                    {{ search }}
                 </div>
 
                 <hr>
 
                 <ul class="list-group">
                     <li 
-                        v-for="(car, index) of cars"
+                        v-for="(car, index) of filteredCars"
                         class="list-group-item list-group-item-action pointer"
-                        v-on:click="selectCar(index)"
+                        @click="selectCar(index)"
                         :class="{'active': selectedCarIndex === index}"
                     >
                         {{ car.name }} - {{ car.model }}
@@ -55,13 +61,48 @@
                             <li>Owner - <strong> {{ car.owner }} </strong></li>
                         </ul>
 
-                        <p v-if= "phoneVisibility"> {{ car.phone }} </p>
-                        <button class="btn btn-outline-success mr-2" v-on:click="phoneVisibility = true">Show phone</button>
-                        <button class="btn btn-primary">Buy</button>
+                        <div class="phone-block">
+                            <p v-if= "phoneVisibility"> {{ car.phone }} </p>
+                        </div>
+
+                        <button class="btn btn-outline-success mr-2" 
+                            @click="phoneVisibility = !phoneVisibility"
+                            v-text="phoneBtnText"
+                        ></button>
+                        <button class="btn btn-primary" @click="modalVisibility = true">Buy</button>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <div class="modal fade show" v-if="modalVisibility" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Do you want to by this car?</h5>
+                      <button 
+                        type="button" 
+                        class="close" 
+                        data-dismiss="modal" 
+                        aria-label="Close"
+                        @click="modalVisibility = false"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show" v-if="modalVisibility"></div>
+
     </div>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script> -->
