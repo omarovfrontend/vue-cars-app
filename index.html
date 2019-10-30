@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container pt-5">
+    <div class="container pt-5" id="app">
         <div class="row mb-3">
             <div class="col">
                 <h1>Cars application</h1>
@@ -26,33 +26,46 @@
                 <hr>
 
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-action pointer">12345</li>
-                    <li class="list-group-item list-group-item-action pointer">12345</li>
-                    <li class="list-group-item list-group-item-action pointer">12345</li>
+                    <li 
+                        v-for="(car, index) of cars"
+                        class="list-group-item list-group-item-action pointer"
+                        v-on:click="selectCar(index)"
+                        :class="{'active': selectedCarIndex === index}"
+                    >
+                        {{ car.name }} - {{ car.model }}
+                    </li>
                 </ul>
             </div>
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-5">
-                        <h2>BMW</h2>
-                        <img src="images/bmw.jpg" alt="" class="rounded detailed-car-image">
+                        <h2> {{ car.name }} </h2>
+                        <img 
+                            :src="car.image" 
+                            :alt="car.name" 
+                            class="rounded detailed-car-image"
+                        >
                     </div>
                     <div class="col-md-7 pt-2">
                         <h5>Car details</h5>
 
                         <ul>
-                            <li>Model - <strong>BMW</strong></li>
-                            <li>Year - <strong>2019</strong></li>
-                            <li>Owner - <strong>Shama</strong></li>
+                            <li>Model - <strong> {{ car.model }} </strong></li>
+                            <li>Year - <strong> {{ car.year }} </strong></li>
+                            <li>Owner - <strong> {{ car.owner }} </strong></li>
                         </ul>
 
-                        <p>+7 999 999 99 05</p>
-                        <button class="btn btn-outline-success mr-2">Show phone</button>
+                        <p v-if= "phoneVisibility"> {{ car.phone }} </p>
+                        <button class="btn btn-outline-success mr-2" v-on:click="phoneVisibility = true">Show phone</button>
                         <button class="btn btn-primary">Buy</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
