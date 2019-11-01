@@ -13,3 +13,127 @@
 .modal {
     display: block;
 }
+
+/* animations */
+
+.phone-enter-active, .phone-leave-active {
+    transition: all .5s;
+}
+
+.phone-enter, .phone-leave-to {
+    transform: translateX(50px);
+    opacity: 0;
+}
+
+/* модальное окно */
+
+.modal-enter-active, .modal-leave-active {
+    transition: all .5s;
+}
+    
+.modal-enter, .modal-leave-to {
+    transform: translateY(-100px);
+}
+
+/* серое окно */
+
+.fade-enter-active {
+    animation: .75s fade forwards;
+}
+
+.fade-leave-active {
+    animation: .75s fade reverse;
+}
+    
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: .5;
+    }
+}
+
+            /* Адаптация */
+
+@media screen and (max-width: 1199px) {
+    .col-md-7 {
+        padding-left: 70px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .col-md-7 {
+        box-sizing: content-box;
+        padding: 20px 0 0 17px;
+    }
+
+    .detailed-car-image {
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .col h1 {
+        text-align: center;
+    }
+
+    .col-md-8 {
+        padding-left: 140px;
+    }
+}
+
+@media screen and (max-width: 766px) {
+    .col-md-4 {
+        margin-bottom: 20px;
+    }
+
+    .col-md-7 {
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .col-md-4 {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .col-md-8 {
+        padding-left: 110px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .col-md-8 {
+        padding-left: 60px;
+    }
+}
+
+@media screen and (max-width: 368px) {
+    .col-md-8 {
+        padding-left: 30px;
+    }
+
+    .col-md-7 {
+        padding-left: 60px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .col-md-5 {
+        padding: 0;
+    }
+
+    .col-md-5 h2 {
+        text-align: center;
+    }
+}

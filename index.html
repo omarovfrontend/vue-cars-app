@@ -62,7 +62,9 @@
                         </ul>
 
                         <div class="phone-block">
-                            <p v-if= "phoneVisibility"> {{ car.phone }} </p>
+                            <transition name="phone">
+                                <p v-if= "phoneVisibility"> {{ car.phone }} </p>
+                            </transition>
                         </div>
 
                         <button class="btn btn-outline-success mr-2" 
@@ -92,21 +94,21 @@
             </div>
         </div>
 
-
-        <div class="modal fade show" v-if="modalVisibility" tabindex="-1" role="dialog">
+        <transition name="modal">
+            <div class="modal fade show" v-if="modalVisibility" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title">Do you want to by this car?</h5>
-                      <button 
-                        type="button" 
-                        class="close" 
-                        data-dismiss="modal" 
-                        aria-label="Close"
-                        @click="modalVisibility = false"
-                    >
+                        <button 
+                            type="button" 
+                            class="close" 
+                            data-dismiss="modal" 
+                            aria-label="Close"
+                            @click="modalVisibility = false"
+                        >
                         <span aria-hidden="true">&times;</span>
-                      </button>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <p>Current car - <strong>{{ car.name }}</strong></p>
@@ -136,9 +138,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal-backdrop fade show" v-if="modalVisibility"></div>
+            </div>
+        </transition>
 
+        <trasition name="fade">
+            <div class="modal-backdrop fade show" v-if="modalVisibility"></div>
+        </trasition>
     </div>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script> -->
