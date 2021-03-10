@@ -1,4 +1,4 @@
 # vue-cars-app
 Простое приложение по АВТО,  на vue.js
 
-Демо - https://omarov-frontend.github.io/vue-cars-app/
+Демо - https://omarovfrontend.github.io/vue-cars-app/
